@@ -14,4 +14,4 @@ texture = ExtResource("2_vxckg")
 [node name="CharacterBody2D" parent="World" instance=ExtResource("1_1thej")]
 
 [node name="Camera2D" type="Camera2D" parent="World/CharacterBody2D"]
-zoom = Vector2(7, 7)
+zoom = Vector2(15, 15)
