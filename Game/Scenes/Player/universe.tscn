@@ -6,12 +6,13 @@
 [node name="Universe" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Icon" type="Sprite2D" parent="World"]
 position = Vector2(-80, 31)
 texture = ExtResource("2_vxckg")
 
-[node name="Player" parent="World" instance=ExtResource("1_1thej")]
+[node name="CharacterBody2D" parent="World" instance=ExtResource("1_1thej")]
 
-[node name="Camera2D" type="Camera2D" parent="World/Player"]
-zoom = Vector2(15, 15)
+[node name="Camera2D" type="Camera2D" parent="World/CharacterBody2D"]
+zoom = Vector2(7, 7)

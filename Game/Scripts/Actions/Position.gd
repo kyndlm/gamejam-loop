@@ -10,7 +10,6 @@ func initPos(ghost: Node2D, posX: int, posY: int) -> Position:
 	super.init(ghost)
 	self.posX = posX
 	self.posY = posY
-	print("action created  %s %s %s", [timeStamp, posX, posY])
 	return self
 
 
