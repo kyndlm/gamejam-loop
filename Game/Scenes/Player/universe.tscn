@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://m3rai5odowar"]
+[gd_scene load_steps=4 format=3 uid="uid://m3rai5odowar"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="Texture2D" uid="uid://cy8d1cqryxanl" path="res://icon.svg" id="2_vxckg"]
+[ext_resource type="PackedScene" uid="uid://5py622070ii2" path="res://Scenes/Player/Ghost.tscn" id="3_g1f7f"]
 
 [node name="Universe" type="Node2D"]
 
@@ -15,3 +16,5 @@ texture = ExtResource("2_vxckg")
 
 [node name="Camera2D" type="Camera2D" parent="World/CharacterBody2D"]
 zoom = Vector2(7, 7)
+
+[node name="CharacterBody2D2" parent="World" instance=ExtResource("3_g1f7f")]

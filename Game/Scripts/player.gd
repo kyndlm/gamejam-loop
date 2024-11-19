@@ -10,12 +10,20 @@ enum State {
 	WALK
 }
 
+var ghost: Node2D
+
 var current_state: State = State.IDLE
 var last_direction: String = "down"
 
+func _ready():
+	ghost = load("res://Scenes/Player/Ghost.tscn").instantiate()
+	get_parent().add_child(ghost)
+	ghost = get_node("/root/Universe/World/CharacterBody2D2")
+	pass
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
+	Replay.addAction(Action.new().init(ghost, self.global_position.x , self.global_position.y))
 
 	# Detect input for movement
 	if Input.is_action_pressed("right"):
@@ -28,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		direction.y += 1
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
-		
+	
 	direction = direction.normalized()
 
 	#Update state:

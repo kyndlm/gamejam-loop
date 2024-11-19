@@ -21,9 +21,7 @@ func _process(delta):
 	if(!playReplay && startTime + 5000 < Time.get_ticks_msec()):
 		playReplay = true
 		replayStart = Time.get_ticks_msec()
-	if(!playReplay):
-		addAction(Action.new().init(player, player.global_position.x , player.global_position.y, startTime))
-	else:
+	if(playReplay):
 		#print(actions[0].getTimeStamp())
 		if(actions.size() > 0 && actions.front().getTimeStamp() <= (Time.get_ticks_msec() - replayStart)):
 			print(actions.front().getTimeStamp())
@@ -35,6 +33,7 @@ func _process(delta):
 
 func addAction(action: Action) -> void:
 	actions.append(action)
+	action.setTimeStamp(startTime)
 	pass
 
 func startReplay() -> void:

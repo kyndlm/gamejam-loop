@@ -8,8 +8,7 @@ var posY: int
 var timeStamp: int
 
 
-func init(executer: Node2D, posX: int, posY: int, startTimeStamp: int) -> Action:
-	timeStamp = Time.get_ticks_msec() - startTimeStamp
+func init(executer: Node2D, posX: int, posY: int) -> Action:
 	self.posX = posX
 	self.posY = posY
 	self.executer = executer
@@ -26,6 +25,8 @@ func execute() -> void:
 	
 
 	pass
-
+func setTimeStamp(timeStamp: int) -> void:
+	self.timeStamp = Time.get_ticks_msec() - timeStamp
+	pass
 func getTimeStamp() -> int:
 	return timeStamp
