@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://m3rai5odowar"]
+[gd_scene load_steps=3 format=3 uid="uid://m3rai5odowar"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
+[ext_resource type="Texture2D" uid="uid://cy8d1cqryxanl" path="res://icon.svg" id="2_vxckg"]
 
 [node name="Universe" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Player" parent="World" instance=ExtResource("1_1thej")]
-position = Vector2(526, 384)
+[node name="Icon" type="Sprite2D" parent="World"]
+position = Vector2(-80, 31)
+texture = ExtResource("2_vxckg")
+
+[node name="CharacterBody2D" parent="World" instance=ExtResource("1_1thej")]
+
+[node name="Camera2D" type="Camera2D" parent="World/CharacterBody2D"]
+zoom = Vector2(7, 7)
