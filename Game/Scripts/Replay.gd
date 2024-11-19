@@ -15,13 +15,10 @@ func _ready():
 	icon = get_node("/root/Universe/World/Icon")
 	player = get_node("/root/Universe/World/CharacterBody2D")
 	playReplay = false
-	print(startTime)
 	pass
 
 func _process(delta):
 	if(!playReplay && startTime + 5000 < Time.get_ticks_msec()):
-		print("AUTOREPLAY")
-		print(startTime)
 		playReplay = true
 		replayStart = Time.get_ticks_msec()
 	if(!playReplay):
