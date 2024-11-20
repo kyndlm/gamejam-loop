@@ -26,8 +26,11 @@ func _process(delta):
 
 func actionCheck():
 	if(actions.size() > 0 && actions.front().getTimeStamp() <= (Time.get_ticks_msec() - replayStart)):
-		actions.front().execute()
-		recordedActions.append(actions.pop_front())
+		if(actions.front().getRemainingReplays() > 0):
+			actions.front().execute()
+			recordedActions.append(actions.pop_front())
+		else:
+			actions.pop_front()
 		actionCheck()
 pass
 
@@ -56,7 +59,7 @@ func startedRecording():
 func stoppedRecording():
 	if(!isRecording): #if its not already recoding, then dont do anything
 		print("no Recoding started, so nothing to be stopped")
-		pass
+		return
 	print("Stopped Recording")
 	actions = recordedActions.duplicate()
 	if(actions == recordedActions):

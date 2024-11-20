@@ -15,8 +15,9 @@ func initAnim(ghost: Node2D, animation: String, flip_h: bool) -> AnimationReplay
 	
 	return self
 
-func execute() -> void: 
-
+func execute() -> bool: 
+	if(!super.execute()):
+		return false
 	anim_player.flip_h = self.flip_h
 	anim_player.play(self.animation)
-	pass
+	return true

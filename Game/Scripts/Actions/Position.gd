@@ -13,8 +13,9 @@ func initPos(ghost: Node2D, posX: int, posY: int) -> Position:
 	return self
 
 
-func execute() -> void: 
-	executer.visible = true	
+func execute() -> bool: 
+	if(!super.execute()):
+		return false
 	executer.global_position.x = posX
 	executer.global_position.y = posY
-	pass
+	return true
