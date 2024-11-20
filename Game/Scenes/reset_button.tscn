@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dexgj0ma8envm"]
+[gd_scene load_steps=8 format=3 uid="uid://b684chv1exram"]
 
-[ext_resource type="Script" path="res://Scripts/reset_button.gd" id="1_4la2j"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/button.png" id="2_7v6la"]
+[ext_resource type="Script" path="res://Scripts/level_completed_area.gd" id="2_3ut0k"]
+[ext_resource type="Texture2D" uid="uid://cc1jplfal1ceb" path="res://Assets/Sprites/button.png" id="2_7v6la"]
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="3_25sfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsmki"]
@@ -35,7 +35,6 @@ animations = [{
 size = Vector2(20, 7)
 
 [node name="ResetButton" type="Node2D"]
-script = ExtResource("1_4la2j")
 
 [node name="Button" type="Node2D" parent="."]
 
@@ -45,6 +44,7 @@ sprite_frames = SubResource("SpriteFrames_bpgev")
 animation = &"button_default"
 
 [node name="Area2D" type="Area2D" parent="Button"]
+script = ExtResource("2_3ut0k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
 position = Vector2(0, -1.5)

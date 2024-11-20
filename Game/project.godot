@@ -13,15 +13,12 @@ config_version=5
 config/name="GameJam"
 run/main_scene="res://Scenes/universe.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
 
 [autoload]
 
 Replay="*res://Scripts/Ghosts/Replay.gd"
 GhostManager="*res://Scripts/Ghosts/GhostManager.gd"
-
-[display]
-
-window/stretch/mode="viewport"
 
 [display]
 
@@ -77,6 +74,7 @@ escape={
 
 [physics]
 
+common/physics_ticks_per_second=144
 common/physics_jitter_fix=0.0
 
 [rendering]

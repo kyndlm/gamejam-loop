@@ -46,7 +46,6 @@ pass
 func addAction(action: Action) -> void:
 	recordedActions.append(action)
 	reverseActions.append(action)
-	print("added Reverse Action")
 	action.setTimeStamp(startTime)
 	pass
 	
@@ -64,7 +63,6 @@ func reverseCheck():
 		reverseActions.front().setReverseExecutor(player)
 		reverseActions.front().executeReverse()
 		reverseActions.pop_front()
-		print(reverseActions.size())
 		reverseCheck()
 pass
 	
@@ -76,30 +74,23 @@ func reversePlay(node: Node2D, endOnPosition: Vector2) -> void:
 	pass
 
 func startReplay() -> void:
-	print("Start Replay")
 	replayStart = Time.get_ticks_msec()
 	playReplay = true
 	pass
 	
 func stopReplay() -> void:
-	print("Stop Replay")
 	playReplay = false
 	pass
 	
 func startedRecording():
-	print("Started Recording (Set StartTime for Actions)")
 	startTime = Time.get_ticks_msec()
 	isRecording = true
 	pass
 	
 func stoppedRecording():
 	if(!isRecording): #if its not already recoding, then dont do anything
-		print("no Recoding started, so nothing to be stopped")
 		return
-	print("Stopped Recording")
 	actions = recordedActions.duplicate()
-	if(actions == recordedActions):
-		print("Recoding saved")
 	recordedActions = []
 	isRecording = false
 	pass
