@@ -27,6 +27,8 @@ func endRecording():
 	print("End Recording")
 	Replay.stoppedRecording()
 	self.currentGhostIndex += 1
+	if(self.currentGhostIndex == 3):
+		self.currentGhostIndex = 0
 	#Replay.stopReplay()
 	pass
 	

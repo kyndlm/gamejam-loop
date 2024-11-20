@@ -112,4 +112,5 @@ func _handle_attack_state() -> void:
 			anim_player.play("attack_up")
 		"side":
 			anim_player.play("attack_side")
-	Replay.addAction(AnimationReplay.new().initAnim(ghost, "attack_" + last_direction, anim_player.flip_h))
+	if(ghost != null):
+		Replay.addAction(AnimationReplay.new().initAnim(ghost, "attack_" + last_direction, anim_player.flip_h))
