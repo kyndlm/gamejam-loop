@@ -53,7 +53,6 @@ func reverseCheck():
 	if(reverseStart == 0 && reverseActions.size() > 0):
 		reverseStart = Time.get_ticks_msec() + reverseActions.front().getTimeStamp()/2
 	if(reverseActions.size() <= 0):
-		print("Reverse Ended")
 		isReversing = false
 		reverseStart = 0
 		player.global_position = self.endingPosition

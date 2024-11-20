@@ -21,7 +21,9 @@ func _ready():
 	
 func startRecording():
 	shouldRecordActions = true
+	getRecordingGhost().global_position = self.player.global_position
 	Replay.startedRecording()
+	Replay.addAction(TeleportAction.new().initTp(getRecordingGhost(), self.player.global_position))
 	pass
 	
 func endRecording():
@@ -40,12 +42,13 @@ func getRecordingGhost():
 	return self.ghosts[self.currentGhostIndex]
 	
 func startReplay():
-	getRecordingGhost().global_position = self.player.global_position
 	print("GhostManger Started Replay")
 	Replay.startReplay()
 	pass
 	
 func stopReplay():
+	for ghost in ghosts:
+		Replay.addAction(AnimationAction.new().initAnim(ghost, "idle_down", false))
 	Replay.stopReplay()
 	pass
 	

@@ -18,8 +18,8 @@ func _on_body_entered(body):
 	if(isEnabled):
 		print("Level Started")
 		isEnabled = false
-		GhostManager.startReplay()
 		GhostManager.startRecording()
+		GhostManager.startReplay()
 		Replay.setAreaToActivate(self)
 		get_parent().get_node("LevelCompletedArea").setEnabled(true)
 	pass
