@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyiprvxiud5gm"]
+
+[ext_resource type="Script" path="res://Scripts/reset_button.gd" id="1_4la2j"]
+[ext_resource type="Texture2D" uid="uid://b6iamx8a5abq" path="res://Assets/Sprites/button.png" id="2_7v6la"]
+[ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="3_25sfv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsmki"]
+atlas = ExtResource("2_7v6la")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xwod"]
+atlas = ExtResource("2_7v6la")
+region = Rect2(0, 16, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpgev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsmki")
+}],
+"loop": true,
+"name": &"button_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xwod")
+}],
+"loop": true,
+"name": &"button_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwxej"]
+size = Vector2(20, 7)
+
+[node name="ResetButton" type="Node2D"]
+script = ExtResource("1_4la2j")
+
+[node name="Button" type="Node2D" parent="."]
+
+[node name="ResetButtonSprite" type="AnimatedSprite2D" parent="Button"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_bpgev")
+animation = &"button_default"
+
+[node name="Area2D" type="Area2D" parent="Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_mwxej")
+
+[node name="Player" parent="." instance=ExtResource("3_25sfv")]
+position = Vector2(-49, -3)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(12, 12)
+
+[connection signal="body_entered" from="Button/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Button/Area2D" to="." method="_on_area_2d_body_exited"]
