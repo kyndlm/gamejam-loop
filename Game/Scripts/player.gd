@@ -15,10 +15,12 @@ var last_direction: String = "down"
 @export var attack_duration: float = 0.2
 var attack_timer: float = 0.0
 var is_attacking: bool = false
-	
+
+func _ready():
+	GhostManager.setPlayer(self)	
+
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
-	GhostManager.positionChanged(self.global_position)
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		anim_player.flip_h = false
@@ -57,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.ATTACK:
 		velocity = direction * speed
 		move_and_slide()
-	
+		GhostManager.positionChanged(velocity)
 	Replay.processGhost()
 
 func _handle_idle_state() -> void:

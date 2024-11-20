@@ -52,8 +52,6 @@ shape = SubResource("RectangleShape2D_mwxej")
 
 [node name="Player" parent="." instance=ExtResource("3_25sfv")]
 position = Vector2(-49, -3)
-speed = null
-attack_duration = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(12, 12)

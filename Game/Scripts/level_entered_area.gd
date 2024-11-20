@@ -16,6 +16,7 @@ var isEnabled = true
 	
 func _on_body_entered(body):
 	if(isEnabled):
+		print("Level Started")
 		isEnabled = false
 		GhostManager.startReplay()
 		GhostManager.startRecording()

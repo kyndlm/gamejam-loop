@@ -2,7 +2,7 @@ extends Node
 
 var player: Node2D
 var ghostScene = preload("res://Scenes/Player/Ghost.tscn")
-var ghosts = []
+var ghosts: Array[Node2D] = []
 var currentGhostIndex = 0
 
 var timedPassed = 0
@@ -40,6 +40,8 @@ func getRecordingGhost():
 	return self.ghosts[self.currentGhostIndex]
 	
 func startReplay():
+	getRecordingGhost().global_position = self.player.global_position
+	print("GhostManger Started Replay")
 	Replay.startReplay()
 	pass
 	
@@ -47,13 +49,17 @@ func stopReplay():
 	Replay.stopReplay()
 	pass
 	
-func positionChanged(pos: Vector2):
-	
+func positionChanged(velocity: Vector2):
 	if(shouldRecordActions):
-		Replay.addAction(PositionAction.new().initPos(getRecordingGhost(), pos.x, pos.y))
+		Replay.addAction(PositionAction.new().initPos(getRecordingGhost(), velocity))
 	pass
 	
 func animationChanged(animationName: String, flipped: bool):
 	if(shouldRecordActions):
 		Replay.addAction(AnimationAction.new().initAnim(getRecordingGhost(), animationName, flipped))
+	pass
+
+func setPlayer(player: Node2D):
+	print("setplayer")
+	self.player = player
 	pass
