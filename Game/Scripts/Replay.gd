@@ -3,9 +3,6 @@ extends Node
 var actions: Array[Action] = []
 var recordedActions: Array[Action] = []
 
-var icon: Node2D
-var player: Node2D
-
 var startTime: int
 
 var replayStart: int
@@ -13,11 +10,10 @@ var playReplay: bool
 var isRecording: bool
 
 func _ready():
-	icon = get_node("/root/Universe/World/Icon")
-	player = get_node("/root/Universe/World/CharacterBody2D")
 	playReplay = false
 	isRecording = false
 	pass
+
 
 func _process(delta):
 	if(playReplay):
