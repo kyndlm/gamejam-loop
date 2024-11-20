@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dot1f5b8cd00t"]
+[gd_scene load_steps=35 format=3 uid="uid://c6bt0157jaokf"]
 
 [ext_resource type="Texture2D" uid="uid://cx002bbjsa37a" path="res://Assets/Sprites/PlayerSprites/PlayerAttackSprite.png" id="1_y6giw"]
 [ext_resource type="Texture2D" uid="uid://bcgowjhd1hnmb" path="res://Assets/Sprites/PlayerSprites/Prototype_Character.png" id="2_m1sas"]
@@ -265,6 +265,7 @@ animations = [{
 }]
 
 [node name="Ghost" type="CharacterBody2D"]
+physics_interpolation_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -272,7 +273,7 @@ shape = SubResource("RectangleShape2D_ud84k")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
+texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_hw8qy")
 animation = &"attack_up"
 autoplay = "idle_down"
