@@ -14,7 +14,7 @@ var isRecording: bool
 
 func _ready():
 	icon = get_node("/root/Universe/World/Icon")
-	player = get_node("/root/Universe/World/CharacterBody2D")
+	player = get_node("/root/Universe/World/Player")
 	playReplay = false
 	isRecording = false
 	pass
