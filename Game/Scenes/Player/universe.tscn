@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://m3rai5odowar"]
+[gd_scene load_steps=5 format=3 uid="uid://m3rai5odowar"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://dyp85ebrvncwo" path="res://Scenes/Maps/tile_map_layer_main.tscn" id="2_vxn3s"]
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
+[ext_resource type="PackedScene" uid="uid://cd8k57bt503jv" path="res://Scenes/enemy.tscn" id="4_yu8xl"]
 
 [node name="Universe" type="Node2D"]
 
@@ -16,6 +17,10 @@ position = Vector2(691, 475)
 position = Vector2(692, 475)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(7, 7)
+
+[node name="Enemy" parent="." instance=ExtResource("4_yu8xl")]
+position = Vector2(-45, -32)
