@@ -16,9 +16,18 @@ var last_direction: String = "down"
 var attack_timer: float = 0.0
 var is_attacking: bool = false
 
+var ghostScene = preload("res://Scenes/Player/Ghost.tscn")
+var ghost: Node2D
+
+func _ready():
+	self.ghost = null
+	pass
+	
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
-
+	if(ghost != null):
+		Replay.addAction(Position.new().initPos(ghost, self.global_position.x , self.global_position.y))
+		
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		anim_player.flip_h = false
@@ -29,6 +38,17 @@ func _physics_process(delta: float) -> void:
 		direction.y += 1
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
+	if Input.is_action_just_released("levelEnded"):
+		print("Level Ended")
+		self.ghost = null
+		GhostManager.endRecording()
+		GhostManager.stopReplay()
+		self.global_position.x = 0
+		self.global_position.y = 0
+	if Input.is_action_just_released("levelStarted"):
+		print("Level Started")
+		self.ghost = GhostManager.getNextGhost(self)
+		GhostManager.startReplay()
 
 	direction = direction.normalized()
 
@@ -66,6 +86,9 @@ func _handle_idle_state() -> void:
 			anim_player.play("idle_up")
 		"side":
 			anim_player.play("idle_side")
+	if(ghost != null):
+		Replay.addAction(AnimationReplay.new().initAnim(ghost, "idle_" + last_direction, anim_player.flip_h))
+
 
 func _handle_walk_state(direction: Vector2) -> void:
 	if direction.y > 0:
@@ -77,6 +100,9 @@ func _handle_walk_state(direction: Vector2) -> void:
 	else:
 		last_direction = "side"
 		anim_player.play("walk_side")
+	if(ghost != null):
+		Replay.addAction(AnimationReplay.new().initAnim(ghost, "walk_" + last_direction, anim_player.flip_h))
+
 
 func _handle_attack_state() -> void:
 	match last_direction:
@@ -86,3 +112,5 @@ func _handle_attack_state() -> void:
 			anim_player.play("attack_up")
 		"side":
 			anim_player.play("attack_side")
+	if(ghost != null):
+		Replay.addAction(AnimationReplay.new().initAnim(ghost, "attack_" + last_direction, anim_player.flip_h))
