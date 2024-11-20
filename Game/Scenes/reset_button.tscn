@@ -44,6 +44,8 @@ sprite_frames = SubResource("SpriteFrames_bpgev")
 animation = &"button_default"
 
 [node name="Area2D" type="Area2D" parent="Button"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
 position = Vector2(0, -1.5)

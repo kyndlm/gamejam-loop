@@ -25,6 +25,7 @@ scale = Vector2(1, 10)
 position = Vector2(692, 475)
 
 [node name="ResetButton" parent="World" instance=ExtResource("6_o6oia")]
+unique_name_in_owner = true
 position = Vector2(-155, 62)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]

@@ -1,6 +1,8 @@
 extends Area2D
 
 var isEnabled = true
+
+@onready var resetButton = %ResetButton
 #var test: bool = false
 #
 #func _on_body_entered(body):
@@ -21,7 +23,7 @@ func _on_body_entered(body):
 		GhostManager.startRecording()
 		GhostManager.startReplay()
 		Replay.setAreaToActivate(self)
-		get_parent().get_node("LevelCompletedArea").setEnabled(true)
+		resetButton.setEnabled(true)
 	pass
 	
 func setEnabled(isEnabled: bool):
