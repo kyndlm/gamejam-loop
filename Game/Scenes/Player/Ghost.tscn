@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c6bt0157jaokf"]
+[gd_scene load_steps=39 format=3 uid="uid://c6bt0157jaokf"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/enemy.gdshader" id="1_egt03"]
 [ext_resource type="Texture2D" uid="uid://cx002bbjsa37a" path="res://Assets/Sprites/PlayerSprites/PlayerAttackSprite.png" id="1_y6giw"]
@@ -269,7 +269,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Ghost3" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8y52f"]
+size = Vector2(26, 7)
+
+[node name="Ghost" type="CharacterBody2D"]
 physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 4
@@ -283,8 +286,9 @@ disabled = true
 texture_filter = 2
 material = SubResource("ShaderMaterial_chbux")
 sprite_frames = SubResource("SpriteFrames_hw8qy")
-animation = &"attack_up"
+animation = &"attack_down"
 autoplay = "idle_down"
+frame = 2
 speed_scale = 0.5
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -292,3 +296,9 @@ color = Color(0, 0, 1, 1)
 energy = 2.3
 texture = ExtResource("4_nrjx5")
 texture_scale = 1.6
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_8y52f")
