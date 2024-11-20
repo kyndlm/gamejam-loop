@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnu4pqxy26kyu"]
+
+[ext_resource type="Texture2D" uid="uid://bfq47pdyd74ek" path="res://Assets/Sprites/UI/CharIcon.png" id="1_rtj4s"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_y5vpm"]
+[ext_resource type="Texture2D" uid="uid://c5bp4lnmoix0v" path="res://Assets/Sprites/UI/HealthBar.png" id="2_7pt2i"]
+[ext_resource type="FontFile" uid="uid://beth0v6bcjbjr" path="res://Assets/Fonts/PeaberryBase.ttf" id="3_rd1ot"]
+
+[node name="overlay" type="CanvasLayer"]
+script = ExtResource("1_y5vpm")
+
+[node name="PlayerInfo" type="TextureProgressBar" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 83.0
+offset_bottom = 29.0
+scale = Vector2(4, 4)
+value = 100.0
+texture_under = ExtResource("1_rtj4s")
+texture_progress = ExtResource("2_7pt2i")
+texture_progress_offset = Vector2(27, 8)
+
+[node name="health" type="Label" parent="PlayerInfo"]
+layout_mode = 0
+offset_left = 50.25
+offset_top = 15.75
+offset_right = 90.25
+offset_bottom = 38.75
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.678431, 0.6, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rd1ot")
+text = "100"
+
+[node name="playerlevel" type="Label" parent="PlayerInfo"]
+layout_mode = 0
+offset_left = 33.5
+offset_top = 16.0
+offset_right = 87.5
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0.678431, 0.6, 0.67451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rd1ot")
+text = "99"
