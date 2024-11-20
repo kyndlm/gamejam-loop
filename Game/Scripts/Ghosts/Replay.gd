@@ -95,6 +95,8 @@ func stoppedRecording():
 	print("Stopped Recording")
 	if(!isRecording): #if its not already recoding, then dont do anything
 		return
+	while(!actions.is_empty()):
+		recordedActions.append(actions.pop_front())
 	actions = recordedActions.duplicate()
 	recordedActions = []
 	isRecording = false
