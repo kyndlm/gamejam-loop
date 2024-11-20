@@ -25,3 +25,8 @@ func _on_body_entered(body):
 	
 func setEnabled(isEnabled: bool):
 	self.isEnabled = isEnabled
+
+
+func _on_body_exited(body: Node2D) -> void:
+	get_parent().get_node("StaticBody2D/doorcollision").disabled=0
+	pass # Replace with function body.
