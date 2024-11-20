@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvx2ava3t1b2w"]
+[gd_scene load_steps=8 format=3 uid="uid://bvx2ava3t1b2w"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 [ext_resource type="PackedScene" uid="uid://xnf4bsi4rh47" path="res://Scenes/LevelEnteredArea.tscn" id="3_nptfh"]
 [ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
+[ext_resource type="PackedScene" uid="uid://cd8k57bt503jv" path="res://Scenes/enemy.tscn" id="7_rdbeh"]
 
 [node name="Universe" type="Node2D"]
 
@@ -35,3 +36,5 @@ collision_mask = 5
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(7, 7)
+
+[node name="Enemy" parent="World" instance=ExtResource("7_rdbeh")]
