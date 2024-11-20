@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var attack_duration: float = 0.2
 
 @onready var anim_player = %EnemyAnimPlayer
-@onready var player: CharacterBody2D = %Player  
+@onready var player = %Player
 
 enum State {
 	IDLE,

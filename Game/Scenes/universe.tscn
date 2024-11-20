@@ -31,6 +31,8 @@ position = Vector2(692, 475)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]
 unique_name_in_owner = true
+collision_layer = 1
+collision_mask = 5
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(7, 7)
