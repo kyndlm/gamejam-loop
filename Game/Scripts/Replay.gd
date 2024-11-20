@@ -3,9 +3,6 @@ extends Node
 var actions: Array[Action] = []
 var recordedActions: Array[Action] = []
 
-var icon: Node2D
-var player: Node2D
-
 var startTime: int
 
 var replayStart: int
@@ -13,11 +10,10 @@ var playReplay: bool
 var isRecording: bool
 
 func _ready():
-	icon = get_node("/root/Universe/World/Icon")
-	player = get_node("/root/Universe/World/Player")
 	playReplay = false
 	isRecording = false
 	pass
+
 
 func _process(delta):
 	if(playReplay):
@@ -26,8 +22,11 @@ func _process(delta):
 
 func actionCheck():
 	if(actions.size() > 0 && actions.front().getTimeStamp() <= (Time.get_ticks_msec() - replayStart)):
-		actions.front().execute()
-		recordedActions.append(actions.pop_front())
+		if(actions.front().getRemainingReplays() > 0):
+			actions.front().execute()
+			recordedActions.append(actions.pop_front())
+		else:
+			actions.pop_front()
 		actionCheck()
 pass
 
@@ -56,7 +55,7 @@ func startedRecording():
 func stoppedRecording():
 	if(!isRecording): #if its not already recoding, then dont do anything
 		print("no Recoding started, so nothing to be stopped")
-		pass
+		return
 	print("Stopped Recording")
 	actions = recordedActions.duplicate()
 	if(actions == recordedActions):
