@@ -16,3 +16,11 @@ https://anokolisa.itch.io/dungeon-crawler-pixel-art-asset-pack
 Pixel RPG NPC by Snoblin
 
 https://snoblin.itch.io/pixel-rpg-free-npc
+
+Dungeon Font by vrtxrry
+
+https://vrtxrry.itch.io/dungeonfont
+
+Pixel Art GUI Elements by Mounir Tohami
+
+https://mounirtohami.itch.io/pixel-art-gui-elements
