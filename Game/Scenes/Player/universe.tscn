@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://m3rai5odowar"]
+[gd_scene load_steps=6 format=3 uid="uid://m3rai5odowar"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
+[ext_resource type="PackedScene" uid="uid://0ihdl5q03g8r" path="res://Scenes/LevelEnteredArea.tscn" id="2_ql1co"]
 [ext_resource type="PackedScene" uid="uid://dyp85ebrvncwo" path="res://Scenes/Maps/tile_map_layer_main.tscn" id="2_vxn3s"]
+[ext_resource type="PackedScene" uid="uid://bc2epwk8nirxv" path="res://Scenes/LevelCompletedArea.tscn" id="3_2cupd"]
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 
 [node name="Universe" type="Node2D"]
@@ -12,10 +14,22 @@ unique_name_in_owner = true
 [node name="TileMapLayerMain" parent="World" instance=ExtResource("2_vxn3s")]
 position = Vector2(691, 475)
 
+[node name="LevelEnteredArea" parent="World/TileMapLayerMain" instance=ExtResource("2_ql1co")]
+position = Vector2(-481, -518)
+scale = Vector2(1, 7.8)
+
+[node name="LevelCompletedArea" parent="World/TileMapLayerMain" instance=ExtResource("3_2cupd")]
+position = Vector2(-513, -367)
+rotation = 1.5708
+scale = Vector2(10, 10)
+
 [node name="TileMapLayerProp" parent="World" instance=ExtResource("3_7vtxy")]
 position = Vector2(692, 475)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
+texture_filter = 1
 zoom = Vector2(7, 7)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://cr3qfcods130o"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_b1rgs"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_b1rgs"]
 [ext_resource type="Texture2D" uid="uid://cx002bbjsa37a" path="res://Assets/Sprites/PlayerSprites/PlayerAttackSprite.png" id="2_ap8me"]
 [ext_resource type="Texture2D" uid="uid://bcgowjhd1hnmb" path="res://Assets/Sprites/PlayerSprites/Prototype_Character.png" id="2_dn8vl"]
 
@@ -266,9 +266,11 @@ animations = [{
 size = Vector2(10, 8)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_b1rgs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2la8d")
 animation = &"attack_up"
 autoplay = "idle_down"
