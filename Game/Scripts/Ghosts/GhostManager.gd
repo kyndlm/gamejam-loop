@@ -7,36 +7,37 @@ var currentGhostIndex = 0
 
 var timedPassed = 0
 var level = 0
+
+var shouldRecordActions: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(3):
 		var worldNode = get_node("/root/Universe/World")
 		var ghost = ghostScene.instantiate()
 		worldNode.add_child(ghost)
-		#ghost.visible = false
+		ghost.visible = false
 		self.ghosts.append(ghost)
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
 	
+func startRecording():
+	shouldRecordActions = true
+	Replay.startedRecording()
 	pass
 	
 func endRecording():
-	print("End Recording")
+	shouldRecordActions = false
 	Replay.stoppedRecording()
+	setNewGhost()
+	pass
+	
+func setNewGhost():
 	self.currentGhostIndex += 1
 	if(self.currentGhostIndex == 3):
 		self.currentGhostIndex = 0
-	#Replay.stopReplay()
 	pass
 	
-func getNextGhost(player: Node2D) -> Node2D:
-	print("Get Next Ghost")
-	Replay.startedRecording()
+func getRecordingGhost():
 	return self.ghosts[self.currentGhostIndex]
-	pass
 	
 func startReplay():
 	Replay.startReplay()
@@ -44,4 +45,15 @@ func startReplay():
 	
 func stopReplay():
 	Replay.stopReplay()
+	pass
+	
+func positionChanged(pos: Vector2):
+	
+	if(shouldRecordActions):
+		Replay.addAction(PositionAction.new().initPos(getRecordingGhost(), pos.x, pos.y))
+	pass
+	
+func animationChanged(animationName: String, flipped: bool):
+	if(shouldRecordActions):
+		Replay.addAction(AnimationAction.new().initAnim(getRecordingGhost(), animationName, flipped))
 	pass

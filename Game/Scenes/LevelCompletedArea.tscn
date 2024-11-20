@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc2epwk8nirxv"]
+
+[ext_resource type="Script" path="res://Scripts/level_completed_area.gd" id="1_6xhay"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yb6vo"]
+
+[node name="LevelCompletedArea" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6xhay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_yb6vo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

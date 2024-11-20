@@ -16,8 +16,12 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Replay="*res://Scripts/Replay.gd"
-GhostManager="*res://Scripts/GhostManager.gd"
+Replay="*res://Scripts/Ghosts/Replay.gd"
+GhostManager="*res://Scripts/Ghosts/GhostManager.gd"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [display]
 
@@ -71,6 +75,12 @@ escape={
 ]
 }
 
+[physics]
+
+common/physics_jitter_fix=0.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
