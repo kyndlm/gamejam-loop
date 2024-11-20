@@ -2,9 +2,9 @@ This Project was created in a GameJam Event.
 
 The Topic was "Loop"
 
-is a 2D Top-Down Pixel Art Dungeon Crawler.
+it is a 2D Top-Down Pixel Art Dungeon Crawler.
 
-Its special mechanic is the Timeloop feature letting you interact with yourself in between Time.
+It special mechanic is the Timeloop feature letting you interact with yourself in between Time.
 
 
 #Credits
