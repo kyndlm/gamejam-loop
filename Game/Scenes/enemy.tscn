@@ -279,9 +279,9 @@ texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_fcg67")
 sprite_frames = SubResource("SpriteFrames_2la8d")
-animation = &"walk_up"
+animation = &"attack_down"
 autoplay = "idle_down"
-frame_progress = 0.440511
+frame = 2
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
