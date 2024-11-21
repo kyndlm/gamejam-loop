@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bvx2ava3t1b2w"]
+[gd_scene load_steps=12 format=4 uid="uid://bvx2ava3t1b2w"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://yn1t5jvsgyxv" path="res://Assets/Sprites/Tilemaps/Tiles.png" id="3_rxodl"]
 [ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
 [ext_resource type="PackedScene" uid="uid://cisgfditt5o0l" path="res://Scenes/Maps/StartDoor.tscn" id="6_ol4le"]
+[ext_resource type="AudioStream" uid="uid://by87u27jsmdtv" path="res://Assets/Sounds/SLOWER-TEMPO2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="9_0pc6a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytujs"]
 texture = ExtResource("3_rxodl")
@@ -351,3 +352,8 @@ collision_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(7, 7)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_0pc6a")
+volume_db = -7.0
+autoplay = true
