@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void:
 		current_state = State.ATTACK
 		is_attacking = true
 		attack_timer = attack_duration
+		spawnHitBox(last_direction)
 	elif direction == Vector2.ZERO:
 		current_state = State.IDLE
 	else:
@@ -98,7 +99,6 @@ func _handle_attack_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("attack_down")
-			spawnHitBox("down")
 		"up":
 			anim_player.play("attack_up")
 		"side":
@@ -108,8 +108,7 @@ func _handle_attack_state() -> void:
 func spawnHitBox(state: String):
 	var hitBox = hitBoxScene.instantiate()
 	add_child(hitBox)
-	print(hitBox)
-	print(hitBox.get_child(0, false))
+	print("spawnHitBox aufgerufen, state:", state, "Stacktrace:", get_stack())
 	#if state == "down":
 		#hitBox.get_node("CollisionShape2D").position = Vector2(0,11.5)
 	
