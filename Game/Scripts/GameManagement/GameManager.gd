@@ -59,6 +59,7 @@ func enemyKilled():
 	player.add_exp(1)
 	setLevelBar(player.get_lvl())
 	pass
+
 func enemyKilledLevelMult():
 	score += level+1
 	pass

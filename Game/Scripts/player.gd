@@ -212,6 +212,9 @@ func get_exp() -> float:
 	return exp
 func add_exp(value: int):
 	exp += value
+	print(exp, exp_until_lvlup)
+	if(exp >= exp_until_lvlup):
+		lvl_up_player()
 	pass
 func get_exp_until_lvlup() -> float:
 	return exp_until_lvlup

@@ -59,7 +59,7 @@ func addAction(action: Action) -> void:
 
 func reverseCheck():
 	if reverseStart == 0 and reverseActions.size() > 0:
-		reverseStart = Time.get_ticks_msec() + reverseActions.front().getTimeStamp() / 2
+		reverseStart = Time.get_ticks_msec() + reverseActions.front().getTimeStamp() / 8
 	
 	if reverseActions.size() <= 0:
 		isReversing = false
@@ -71,7 +71,7 @@ func reverseCheck():
 			print("StartDoor ist nicht gesetzt!")
 		
 	else:
-		if reverseActions.front().getTimeStamp() / 2 >= reverseStart - Time.get_ticks_msec():
+		if reverseActions.front().getTimeStamp() / 8 >= reverseStart - Time.get_ticks_msec():
 			reverseActions.front().setReverseExecutor(player)
 			reverseActions.front().executeReverse()
 			reverseActions.pop_front()

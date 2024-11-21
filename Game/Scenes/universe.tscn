@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvx2ava3t1b2w"]
+[gd_scene load_steps=11 format=3 uid="uid://bvx2ava3t1b2w"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
 [ext_resource type="PackedScene" uid="uid://cisgfditt5o0l" path="res://Scenes/Maps/StartDoor.tscn" id="6_ol4le"]
 [ext_resource type="PackedScene" path="res://Scenes/Maps/tile_map_layer_doors.tscn" id="8_m8evn"]
+[ext_resource type="FontFile" uid="uid://beth0v6bcjbjr" path="res://Assets/Fonts/PeaberryBase.ttf" id="8_o4xyu"]
 [ext_resource type="AudioStream" uid="uid://by87u27jsmdtv" path="res://Assets/Sounds/SLOWER-TEMPO2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="9_0pc6a"]
 
 [node name="Universe" type="Node2D"]
@@ -42,6 +43,24 @@ zoom = Vector2(5, 5)
 position = Vector2(687, 472)
 
 [node name="TileMapLayerProp" parent="World/TileMapLayerMain" instance=ExtResource("3_7vtxy")]
+
+[node name="Label" type="Label" parent="World/TileMapLayerMain/TileMapLayerProp"]
+offset_left = -749.0
+offset_top = -540.0
+offset_right = -616.0
+offset_bottom = -465.0
+scale = Vector2(0.739007, 0.762786)
+theme_override_colors/font_color = Color(0.299543, 0.429418, 0.444714, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_o4xyu")
+text = "W/A/S/D to move
+LMB to attack
+SPACE for Ult
+
+To start the 
+Wave go to the 
+right"
 
 [node name="TileMapLayerDoors" parent="World/TileMapLayerMain" instance=ExtResource("8_m8evn")]
 

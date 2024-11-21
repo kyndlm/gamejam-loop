@@ -124,9 +124,9 @@ func _perform_attack():
 		pass
 
 func takeDamage():
-	
 	health -= 1
 	if(health <= 0):
+		GameManager.enemyKilled()
 		self.queue_free()
 	pass
 
