@@ -56,7 +56,8 @@ func playerHit():
 	pass
 	
 func enemyKilled():
-	score += 1
+	player.add_exp(1)
+	setLevelBar(player.get_lvl())
 	pass
 func enemyKilledLevelMult():
 	score += level+1
@@ -96,6 +97,7 @@ func setLevelBar(value: int):
 
 func registerPlayer(player: Node2D):
 	self.player = player
+	setLevelBar(player.get_lvl())
 	pass
 	
 func resetHealth():

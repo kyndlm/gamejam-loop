@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 [ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
 [ext_resource type="PackedScene" uid="uid://cisgfditt5o0l" path="res://Scenes/Maps/StartDoor.tscn" id="6_ol4le"]
-[ext_resource type="PackedScene" uid="uid://cy3xfyqmhnqcc" path="res://Scenes/Maps/tile_map_layer_doors.tscn" id="8_m8evn"]
+[ext_resource type="PackedScene" path="res://Scenes/Maps/tile_map_layer_doors.tscn" id="8_m8evn"]
 [ext_resource type="AudioStream" uid="uid://by87u27jsmdtv" path="res://Assets/Sounds/SLOWER-TEMPO2019-12-09_-_Retro_Forest_-_David_Fesliyan.mp3" id="9_0pc6a"]
 
 [node name="Universe" type="Node2D"]
