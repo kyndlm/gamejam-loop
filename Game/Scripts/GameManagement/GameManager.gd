@@ -17,9 +17,6 @@ enum Room {
 var current_room: Room = Room.BASE
 
 func _ready():
-	# get Spawn Areas
-	for i in range(spawnAreas.size()):
-		print("test dicker DAVID")
 	pass # Replace with function body.
 
 

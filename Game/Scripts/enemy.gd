@@ -108,7 +108,6 @@ func _handle_attack_state():
 
 
 func dominant_direction(direction: Vector2) -> Vector2:
-	print("Direction: ", direction)
 	if abs(direction.x) > abs(direction.y):
 		return Vector2(sign(direction.x), 0)  # x dominiert
 	else:
