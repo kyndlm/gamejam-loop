@@ -24,6 +24,7 @@ func _on_body_entered(body):
 		GhostManager.startReplay()
 		Replay.setAreaToActivate(self)
 		resetButton.setEnabled(true)
+		GameManager.startNewWave(body)
 	pass
 	
 func setEnabled(isEnabled: bool):
