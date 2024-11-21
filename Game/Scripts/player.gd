@@ -149,16 +149,21 @@ func _handle_hit_state() -> void:
 
 func spawnHitBox(state: String):
 	# Hitbox instanziieren
+	var dir: String = ""
 	var hitBox
 	if state == "down":
 		hitBox = hitBoxDownScene.instantiate()
+		dir = "down"
 	if state == "up":
 		hitBox = hitBoxUpScene.instantiate()
+		dir = "up"
 	if state == "side":
+		dir = "side"
 		if anim_player.flip_h == false:
 			hitBox = hitBoxRightScene.instantiate()
 		else:
 			hitBox = hitBoxLeftScene.instantiate()
+	GhostManager.deployedHit(self.global_position, state, anim_player.flip_h)
 	add_child(hitBox)
 	await get_tree().create_timer(attack_duration).timeout
 	hitBox.queue_free()
@@ -190,7 +195,6 @@ func lvl_up_player():
 	exp -= exp_until_lvlup
 	
 func damageAnimation():
-	print("Damage animation")
 	self.current_state = State.HIT
 	hitAnimation = true
 	pass
