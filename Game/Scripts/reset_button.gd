@@ -13,6 +13,7 @@ func _on_area_2d_body_entered(body):
 	if(isEnabled):
 		GameManager.removeAllEnemys()
 		GameManager.resetHealth()
+		GameManager.levelCompleted()
 		GhostManager.stopReplay()
 		GhostManager.endRecording()
 		Replay.reversePlay(body, self.global_position)
