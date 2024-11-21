@@ -46,6 +46,14 @@ func registerSpawnArea(sArea: SpawnArea):
 	self.spawnAreas.append(sArea)
 	pass
 	
+func playerHit():
+	health -= 1 + level*2
+	print(health)
+	if(health <= 0):
+		get_tree().quit()
+	ui.setHealthBarValue(health)
+	pass
+	
 func enemyKilled():
 	score += 1
 	pass
@@ -80,4 +88,7 @@ func getSkillPoints() -> int:
 
 func registerUi(ui: Ui):
 	self.ui = ui
+	pass
+func setLevelBar(value: int):
+	ui.setLevelBarValue(str(value))
 	pass

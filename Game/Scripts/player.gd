@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @onready var anim_player = $AnimatedSprite2D
 
+
+var hitBoxScene = preload("res://Scenes/HitBox.tscn")
+var positionFrameTime = 1
+var passedTime = 0
+
 @export var max_health: int = 100
 @export var health: int = max_health
 @export var attack: int = 25
@@ -22,10 +27,12 @@ var last_direction: String = "down"
 @export var attack_duration: float = 0.2
 var attack_timer: float = 0.0
 var is_attacking: bool = false
+
+func _ready():
+	GhostManager.setPlayer(self)
 	
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
-	GhostManager.positionChanged(self.global_position)
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		anim_player.flip_h = false
@@ -64,7 +71,10 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.ATTACK:
 		velocity = direction * speed
 		move_and_slide()
-	
+		GhostManager.positionChanged(velocity)
+		passedTime += delta
+		if(passedTime>positionFrameTime):
+			GhostManager.absolutePositionChanged(self.global_position)
 	Replay.processGhost()
 
 func _handle_idle_state() -> void:
@@ -81,6 +91,7 @@ func _handle_walk_state(direction: Vector2) -> void:
 	if direction.y > 0:
 		last_direction = "down"
 		anim_player.play("walk_down")
+		spawnHitBox("down")
 	elif direction.y < 0:
 		last_direction = "up"
 		anim_player.play("walk_up")
@@ -88,6 +99,17 @@ func _handle_walk_state(direction: Vector2) -> void:
 		last_direction = "side"
 		anim_player.play("walk_side")
 	GhostManager.animationChanged("walk_" + last_direction, anim_player.flip_h)
+
+func spawnHitBox(state: String):
+	var hitBox = hitBoxScene.instantiate()
+	add_child(hitBox)
+	print(hitBox)
+	print(hitBox.get_child(0, false))
+	#if state == "down":
+		#hitBox.get_node("CollisionShape2D").position = Vector2(0,11.5)
+	await get_tree().create_timer(0.2).timeout
+	hitBox.queue_free()
+	pass
 
 func _handle_attack_state() -> void:
 	match last_direction:
@@ -98,6 +120,8 @@ func _handle_attack_state() -> void:
 		"side":
 			anim_player.play("attack_side")
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
+	pass
+
 
 func get_health() -> int:
 	return health
