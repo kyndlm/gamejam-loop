@@ -22,10 +22,14 @@ var passedTime = 0
 var attackCooldown: float = 0.4  # Dauer des Cooldowns
 var attackCooldownTimer: float = 0.0  # Timer zur Verfolgung
 
+var hitAnimation: bool = false
+
 enum State {
 	IDLE,
 	WALK,
-	ATTACK
+	ATTACK,
+	ATTACK_ULT,
+	HIT
 }
 
 var current_state: State = State.IDLE
@@ -37,6 +41,7 @@ var is_attacking: bool = false
 
 func _ready():
 	GhostManager.setPlayer(self)	
+	GameManager.registerPlayer(self)
 
 func _physics_process(delta: float) -> void:
 	# Cooldown-Timer aktualisieren
@@ -58,21 +63,22 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 
 	# Angriff nur starten, wenn Cooldown abgelaufen ist
-	if is_attacking:
-		attack_timer -= delta
-		if attack_timer <= 0:
-			is_attacking = false
+	if !hitAnimation:
+		if is_attacking:
+			attack_timer -= delta
+			if attack_timer <= 0:
+				is_attacking = false
+				current_state = State.IDLE
+		elif Input.is_action_just_pressed("attack") and attackCooldownTimer <= 0:
+			current_state = State.ATTACK
+			is_attacking = true
+			attack_timer = attack_duration
+			attackCooldownTimer = attackCooldown  # Cooldown setzen
+			spawnHitBox(last_direction)
+		elif direction == Vector2.ZERO:
 			current_state = State.IDLE
-	elif Input.is_action_just_pressed("attack") and attackCooldownTimer <= 0:
-		current_state = State.ATTACK
-		is_attacking = true
-		attack_timer = attack_duration
-		attackCooldownTimer = attackCooldown  # Cooldown setzen
-		spawnHitBox(last_direction)
-	elif direction == Vector2.ZERO:
-		current_state = State.IDLE
-	else:
-		current_state = State.WALK
+		else:
+			current_state = State.WALK
 
 	match current_state:
 		State.IDLE:
@@ -81,6 +87,11 @@ func _physics_process(delta: float) -> void:
 			_handle_walk_state(direction)
 		State.ATTACK:
 			_handle_attack_state()
+		State.ATTACK_ULT:
+			_handle_attack_state()
+		State.HIT:
+			_handle_hit_state()
+			hitAnimation = false
 
 	if current_state != State.ATTACK:
 		velocity = direction * speed
@@ -122,6 +133,19 @@ func _handle_attack_state() -> void:
 		"side":
 			anim_player.play("attack_side")
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
+	pass
+
+func _handle_hit_state() -> void:
+	print("hit state handle blabla")
+	match last_direction:
+		"down":
+			anim_player.play("hit_down")
+		"up":
+			anim_player.play("hit_up")
+		"side":
+			anim_player.play("hit_side")
+	GhostManager.animationChanged("hit_" + last_direction, anim_player.flip_h)
+	pass
 
 func spawnHitBox(state: String):
 	# Hitbox instanziieren
@@ -164,3 +188,9 @@ func lvl_up_player():
 	health = max_health
 	attack += 5
 	exp -= exp_until_lvlup
+	
+func damageAnimation():
+	print("Damage animation")
+	self.current_state = State.HIT
+	hitAnimation = true
+	pass

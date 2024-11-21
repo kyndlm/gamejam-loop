@@ -12,6 +12,7 @@ var score: int = 0
 #room if not completed 
 var enemiesLeft: int = 0
 var spawnAreas: Array[SpawnArea] = []
+var player: Node2D
 
 enum Room {
 	BASE,
@@ -48,7 +49,7 @@ func registerSpawnArea(sArea: SpawnArea):
 	
 func playerHit():
 	health -= 1 + level*2
-	print(health)
+	player.damageAnimation()
 	if(health <= 0):
 		get_tree().quit()
 	ui.setHealthBarValue(health)
@@ -91,4 +92,8 @@ func registerUi(ui: Ui):
 	pass
 func setLevelBar(value: int):
 	ui.setLevelBarValue(str(value))
+	pass
+
+func registerPlayer(player: Node2D):
+	self.player = player
 	pass

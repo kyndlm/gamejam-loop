@@ -299,7 +299,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit_down",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -310,7 +310,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit_side",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -321,7 +321,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit_up",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
