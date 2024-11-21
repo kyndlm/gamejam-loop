@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @onready var anim_player = $AnimatedSprite2D
 
+var hitBoxScene = preload("res://Scenes/HitBox.tscn")
+
 enum State {
 	IDLE,
 	WALK,
@@ -15,10 +17,12 @@ var last_direction: String = "down"
 @export var attack_duration: float = 0.2
 var attack_timer: float = 0.0
 var is_attacking: bool = false
-	
+
+func _ready():
+	GhostManager.setPlayer(self)	
+
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
-	GhostManager.positionChanged(self.global_position)
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		anim_player.flip_h = false
@@ -57,13 +61,14 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.ATTACK:
 		velocity = direction * speed
 		move_and_slide()
-	
+		GhostManager.positionChanged(velocity)
 	Replay.processGhost()
 
 func _handle_idle_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("idle_down")
+			
 		"up":
 			anim_player.play("idle_up")
 		"side":
@@ -87,8 +92,21 @@ func _handle_attack_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("attack_down")
+			spawnHitBox("down")
 		"up":
 			anim_player.play("attack_up")
 		"side":
 			anim_player.play("attack_side")
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
+
+func spawnHitBox(state: String):
+	var hitBox = hitBoxScene.instantiate()
+	add_child(hitBox)
+	print(hitBox)
+	print(hitBox.get_child(0, false))
+	#if state == "down":
+		#hitBox.get_node("CollisionShape2D").position = Vector2(0,11.5)
+	
+	await get_tree().create_timer(0.2).timeout
+	hitBox.queue_free()
+	pass

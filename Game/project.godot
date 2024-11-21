@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Replay="*res://Scripts/Ghosts/Replay.gd"
 GhostManager="*res://Scripts/Ghosts/GhostManager.gd"
+GameManager="*res://Scripts/GameManagement/GameManager.gd"
 
 [display]
 
@@ -79,7 +80,6 @@ spawn={
 
 [physics]
 
-common/physics_ticks_per_second=144
 common/physics_jitter_fix=0.0
 
 [rendering]

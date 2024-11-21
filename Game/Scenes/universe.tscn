@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvx2ava3t1b2w"]
+[gd_scene load_steps=7 format=3 uid="uid://bvx2ava3t1b2w"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
 [ext_resource type="PackedScene" uid="uid://dyp85ebrvncwo" path="res://Scenes/Maps/tile_map_layer_main.tscn" id="2_vxn3s"]
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 [ext_resource type="PackedScene" uid="uid://xnf4bsi4rh47" path="res://Scenes/LevelEnteredArea.tscn" id="3_nptfh"]
-[ext_resource type="PackedScene" uid="uid://dwmytw1rtoaby" path="res://Scenes/LevelCompletedArea.tscn" id="4_v2kdi"]
-[ext_resource type="PackedScene" uid="uid://cw1dgth8u28b3" path="res://Scenes/SpawnArea.tscn" id="7_3cw6g"]
+[ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
 
 [node name="Universe" type="Node2D"]
 
@@ -22,12 +21,12 @@ position = Vector2(691, 475)
 position = Vector2(-478, -525)
 scale = Vector2(1, 10)
 
-[node name="LevelCompletedArea" parent="World/TileMapLayerMain" instance=ExtResource("4_v2kdi")]
-position = Vector2(-517, -368)
-rotation = 1.5708
-
 [node name="TileMapLayerProp" parent="World" instance=ExtResource("3_7vtxy")]
 position = Vector2(692, 475)
+
+[node name="ResetButton" parent="World" instance=ExtResource("6_o6oia")]
+unique_name_in_owner = true
+position = Vector2(-155, 62)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]
 unique_name_in_owner = true
@@ -36,6 +35,3 @@ collision_mask = 5
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(7, 7)
-
-[node name="SpawnArea" parent="World" instance=ExtResource("7_3cw6g")]
-position = Vector2(593, 55)

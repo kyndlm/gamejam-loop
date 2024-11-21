@@ -16,12 +16,11 @@ func init(executer: Node2D) -> Action:
 func execute() -> bool: 
 	if(remainingReplays <= 0): #if nothing remaining also prevent execute it
 		return false
-	executer.visible = true	
 	remainingReplays -= 1
 	return true
 	
 func executeReverse() -> bool: 
-	reverseExecutor.visible = true
+	#reverseExecutor.visible = true
 	return true
 	
 func setTimeStamp(timeStamp: int) -> void:

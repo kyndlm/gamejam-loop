@@ -2,26 +2,27 @@ extends Action
 
 class_name PositionAction
 
-var posX: int
-var posY: int
+var velocity
 
 
-func initPos(ghost: Node2D, posX: int, posY: int) -> PositionAction:
+func initPos(ghost: Node2D, velocity: Vector2) -> PositionAction:
 	super.init(ghost)
-	self.posX = posX
-	self.posY = posY
+	self.velocity = velocity
 	return self
 
 
 func execute() -> bool: 
 	if(!super.execute()):
 		return false
-	executer.global_position.x = posX
-	executer.global_position.y = posY
+	executer.visible = true	
+	print(self.velocity)
+	executer.velocity = self.velocity
+	executer.move_and_slide()
 	return true
 
 func executeReverse() -> bool: 
-	super.executeReverse()
-	reverseExecutor.global_position.x = posX
-	reverseExecutor.global_position.y = posY
+	if(!super.executeReverse()):
+		return false
+	reverseExecutor.velocity = -(self.velocity)
+	reverseExecutor.move_and_slide()
 	return true

@@ -13,7 +13,6 @@ func initAnim(ghost: Node2D, animation: String, flip_h: bool) -> AnimationAction
 	self.animation = animation
 	self.flip_h = flip_h
 	anim_player = ghost.get_node("AnimatedSprite2D")
-	
 	return self
 
 func execute() -> bool: 

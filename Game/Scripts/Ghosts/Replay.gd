@@ -56,8 +56,8 @@ func reverseCheck():
 		isReversing = false
 		reverseStart = 0
 		player.global_position = self.endingPosition
-		GhostManager.getRecordingGhost().global_position = self.endingPosition
-		GhostManager.getRecordingGhost().visible = true
+		#GhostManager.getRecordingGhost().global_position = self.endingPosition
+		#GhostManager.getRecordingGhost().visible = true
 		areaToActivate.setEnabled(true)
 	if(reverseActions.size() > 0 && reverseActions.front().getTimeStamp()/2 >= reverseStart - Time.get_ticks_msec()):
 		reverseActions.front().setReverseExecutor(player)
@@ -74,22 +74,29 @@ func reversePlay(node: Node2D, endOnPosition: Vector2) -> void:
 	pass
 
 func startReplay() -> void:
+	print("Started Replay And set replayStart")
+	print(actions.size())
 	replayStart = Time.get_ticks_msec()
 	playReplay = true
 	pass
 	
 func stopReplay() -> void:
+	print("stop Replay")
 	playReplay = false
 	pass
 	
 func startedRecording():
+	print("start Recording")
 	startTime = Time.get_ticks_msec()
 	isRecording = true
 	pass
 	
 func stoppedRecording():
+	print("Stopped Recording")
 	if(!isRecording): #if its not already recoding, then dont do anything
 		return
+	while(!actions.is_empty()):
+		recordedActions.append(actions.pop_front())
 	actions = recordedActions.duplicate()
 	recordedActions = []
 	isRecording = false

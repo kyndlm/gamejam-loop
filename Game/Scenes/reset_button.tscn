@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b684chv1exram"]
+[gd_scene load_steps=7 format=3 uid="uid://b684chv1exram"]
 
-[ext_resource type="Script" path="res://Scripts/level_completed_area.gd" id="2_3ut0k"]
-[ext_resource type="Texture2D" uid="uid://cc1jplfal1ceb" path="res://Assets/Sprites/button.png" id="2_7v6la"]
-[ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="3_25sfv"]
+[ext_resource type="Script" path="res://Scripts/reset_button.gd" id="1_1bak0"]
+[ext_resource type="Texture2D" uid="uid://tqvfjw6tpui4" path="res://Assets/Sprites/button.png" id="2_7v6la"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsmki"]
 atlas = ExtResource("2_7v6la")
@@ -31,10 +30,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwxej"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bfphw"]
 size = Vector2(20, 7)
 
 [node name="ResetButton" type="Node2D"]
+script = ExtResource("1_1bak0")
 
 [node name="Button" type="Node2D" parent="."]
 
@@ -44,19 +44,12 @@ sprite_frames = SubResource("SpriteFrames_bpgev")
 animation = &"button_default"
 
 [node name="Area2D" type="Area2D" parent="Button"]
-script = ExtResource("2_3ut0k")
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
 position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_mwxej")
-
-[node name="Player" parent="." instance=ExtResource("3_25sfv")]
-position = Vector2(-49, -3)
-speed = null
-attack_duration = null
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(12, 12)
+shape = SubResource("RectangleShape2D_bfphw")
 
 [connection signal="body_entered" from="Button/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Button/Area2D" to="." method="_on_area_2d_body_exited"]
