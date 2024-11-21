@@ -67,6 +67,12 @@ func absolutePositionChanged(position: Vector2):
 		Replay.addAction(TeleportAction.new().initTp(getRecordingGhost(), position))
 	pass
 
+func deployedHit(position: Vector2, direction: String, flipH: bool):
+	if(shouldRecordActions):
+		Replay.addAction(HitAction.new().initHit(getRecordingGhost(), position, direction, flipH))
+	pass
+
+
 func setPlayer(player: Node2D):
 	print("setplayer")
 	self.player = player

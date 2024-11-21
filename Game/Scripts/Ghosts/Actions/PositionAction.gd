@@ -15,7 +15,7 @@ func execute() -> bool:
 	if(!super.execute()):
 		return false
 	executer.visible = true	
-	print(self.velocity)
+	#print(self.velocity)
 	executer.velocity = self.velocity
 	executer.move_and_slide()
 	return true
