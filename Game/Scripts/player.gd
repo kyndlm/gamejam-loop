@@ -3,10 +3,12 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @onready var anim_player = $AnimatedSprite2D
 
-var hitBoxScene = preload("res://Scenes/HitBox.tscn")
-
-var positionFrameTime = 1
-var passedTime = 0
+@export var max_health: int = 100
+@export var health: int = max_health
+@export var attack: int = 25
+@export var lvl: int = 1
+@export var exp: float = 0.0
+@export var exp_until_lvlup: float = 10.0
 
 enum State {
 	IDLE,
@@ -20,12 +22,10 @@ var last_direction: String = "down"
 @export var attack_duration: float = 0.2
 var attack_timer: float = 0.0
 var is_attacking: bool = false
-
-func _ready():
-	GhostManager.setPlayer(self)	
-
+	
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
+	GhostManager.positionChanged(self.global_position)
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 		anim_player.flip_h = false
@@ -64,23 +64,18 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.ATTACK:
 		velocity = direction * speed
 		move_and_slide()
-		GhostManager.positionChanged(velocity)
-		passedTime += delta
-		if(passedTime>positionFrameTime):
-			GhostManager.absolutePositionChanged(self.global_position)
+	
 	Replay.processGhost()
 
 func _handle_idle_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("idle_down")
-			
 		"up":
 			anim_player.play("idle_up")
 		"side":
 			anim_player.play("idle_side")
 	GhostManager.animationChanged("idle_" + last_direction, anim_player.flip_h)
-
 
 func _handle_walk_state(direction: Vector2) -> void:
 	if direction.y > 0:
@@ -98,21 +93,36 @@ func _handle_attack_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("attack_down")
-			spawnHitBox("down")
 		"up":
 			anim_player.play("attack_up")
 		"side":
 			anim_player.play("attack_side")
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
 
-func spawnHitBox(state: String):
-	var hitBox = hitBoxScene.instantiate()
-	add_child(hitBox)
-	print(hitBox)
-	print(hitBox.get_child(0, false))
-	#if state == "down":
-		#hitBox.get_node("CollisionShape2D").position = Vector2(0,11.5)
+func get_health() -> int:
+	return health
 	
-	await get_tree().create_timer(0.2).timeout
-	hitBox.queue_free()
-	pass
+func get_maxHealth() -> int:
+	return max_health
+	
+func get_attack() -> int:
+	return attack
+
+func get_lvl() -> int:
+	return lvl
+
+func get_exp() -> float:
+	return exp
+	
+func get_exp_until_lvlup() -> float:
+	return exp_until_lvlup
+	
+func set_health(new_health: int):
+	health = new_health
+
+func lvl_up_player():
+	lvl += 1
+	max_health += 15
+	health = max_health
+	attack += 5
+	exp -= exp_until_lvlup
