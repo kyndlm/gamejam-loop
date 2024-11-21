@@ -15,6 +15,7 @@ func _on_area_2d_body_entered(body):
 		GhostManager.endRecording()
 		Replay.reversePlay(body, self.global_position)
 		isEnabled = false
+		
 	pass
 
 func setEnabled(isEnabled: bool):

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://bvx2ava3t1b2w"]
+[gd_scene load_steps=11 format=4 uid="uid://bvx2ava3t1b2w"]
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
+[ext_resource type="PackedScene" path="res://Scenes/SpawnArea.tscn" id="2_7oqr4"]
 [ext_resource type="PackedScene" uid="uid://dyp85ebrvncwo" path="res://Scenes/Maps/tile_map_layer_main.tscn" id="2_vxn3s"]
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 [ext_resource type="Texture2D" uid="uid://yn1t5jvsgyxv" path="res://Assets/Sprites/Tilemaps/Tiles.png" id="3_rxodl"]
+[ext_resource type="PackedScene" uid="uid://b684chv1exram" path="res://Scenes/reset_button.tscn" id="6_o6oia"]
 [ext_resource type="PackedScene" uid="uid://cisgfditt5o0l" path="res://Scenes/Maps/StartDoor.tscn" id="6_ol4le"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytujs"]
@@ -314,7 +316,11 @@ sources/0 = SubResource("TileSetAtlasSource_ytujs")
 [node name="World" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="SpawnArea" parent="World" instance=ExtResource("2_7oqr4")]
+position = Vector2(886, -87)
+
 [node name="StartDoor" parent="World" instance=ExtResource("6_ol4le")]
+unique_name_in_owner = true
 z_index = 3
 
 [node name="TileMapLayerMain" parent="World" instance=ExtResource("2_vxn3s")]
@@ -331,6 +337,11 @@ z_index = 6
 position = Vector2(688, 475)
 tile_map_data = PackedByteArray("AAAAAPX/AAAAAAoAAAABAPX/AAABAAoAAAAAAOr/AAABAAoAADABAOr/AAAAAAoAADDU//X/AAAAAAoAAADV//X/AAABAAoAAAA=")
 tile_set = SubResource("TileSet_v1hdm")
+
+[node name="ResetButton" parent="World" instance=ExtResource("6_o6oia")]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(0, 69)
 
 [node name="Player" parent="World" instance=ExtResource("1_1thej")]
 unique_name_in_owner = true
