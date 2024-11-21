@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3qfcods130o" path="res://Scenes/Player/player.tscn" id="1_1thej"]
 [ext_resource type="PackedScene" uid="uid://cnu4pqxy26kyu" path="res://Scenes/UI/Game/overlay.tscn" id="1_rg7rw"]
-[ext_resource type="PackedScene" path="res://Scenes/SpawnArea.tscn" id="2_7oqr4"]
+[ext_resource type="PackedScene" uid="uid://cw1dgth8u28b3" path="res://Scenes/SpawnArea.tscn" id="2_7oqr4"]
 [ext_resource type="PackedScene" uid="uid://dyp85ebrvncwo" path="res://Scenes/Maps/tile_map_layer_main.tscn" id="2_vxn3s"]
 [ext_resource type="PackedScene" uid="uid://ddtlhv70vaaqu" path="res://Scenes/Maps/tile_map_layer_prop.tscn" id="3_7vtxy"]
 [ext_resource type="Texture2D" uid="uid://yn1t5jvsgyxv" path="res://Assets/Sprites/Tilemaps/Tiles.png" id="3_rxodl"]
