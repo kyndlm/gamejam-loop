@@ -24,8 +24,8 @@ var direction: Vector2 = Vector2.ZERO
 @export var attack_range: float = 15.0
 
 func _physics_process(delta):
-	var distance_to_player = position.distance_to(player.position)
 
+	var distance_to_player = position.distance_to(player.position)
 	if not is_attacking:
 		if distance_to_player <= attack_range:
 			current_state = State.ATTACK
