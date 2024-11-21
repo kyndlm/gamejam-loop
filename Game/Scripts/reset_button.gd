@@ -12,6 +12,7 @@ func _on_area_2d_body_entered(body):
 	anim_player.play("button_pressed")
 	if(isEnabled):
 		GameManager.removeAllEnemys()
+		GameManager.resetHealth()
 		GhostManager.stopReplay()
 		GhostManager.endRecording()
 		Replay.reversePlay(body, self.global_position)
