@@ -11,6 +11,14 @@ var hitBoxLeftScene = preload("res://Scenes/HitBoxLeft.tscn")
 var positionFrameTime = 1
 var passedTime = 0
 
+
+@export var max_health: int = 100
+@export var health: int = max_health
+@export var attack: int = 25
+@export var lvl: int = 1
+@export var exp: float = 0.0
+@export var exp_until_lvlup: float = 10.0
+
 var attackCooldown: float = 0.4  # Dauer des Cooldowns
 var attackCooldownTimer: float = 0.0  # Timer zur Verfolgung
 
@@ -131,3 +139,28 @@ func spawnHitBox(state: String):
 	await get_tree().create_timer(attack_duration).timeout
 	hitBox.queue_free()
 	pass
+	
+func get_health() -> int:
+	return health
+	
+func get_maxHealth() -> int:
+	return max_health
+	
+func get_attack() -> int:
+	return attack
+func get_lvl() -> int:
+	return lvl
+func get_exp() -> float:
+	return exp
+	
+func get_exp_until_lvlup() -> float:
+	return exp_until_lvlup
+	
+func set_health(new_health: int):
+	health = new_health
+func lvl_up_player():
+	lvl += 1
+	max_health += 15
+	health = max_health
+	attack += 5
+	exp -= exp_until_lvlup

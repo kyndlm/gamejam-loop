@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var health = 2
 @export var speed: float = 55
 @export var attack_duration: float = 0.2
 
@@ -39,6 +40,7 @@ func _physics_process(delta):
 			is_attacking = true
 			attack_timer = attack_duration
 			cooldown_timer = attack_cooldown  # Setze Cooldown nach Angriff
+			_perform_attack()
 		elif distance_to_player <= detection_range:
 			current_state = State.WALK
 			direction = (player.global_position - global_position).normalized()
@@ -103,8 +105,8 @@ func _handle_attack_state():
 		"left":
 			anim_player.play("attack_side")
 
-	if is_attacking and attack_timer <= attack_duration / 2:
-		_perform_attack()
+	#if is_attacking and attack_timer <= attack_duration / 2:
+	#	_perform_attack()
 
 
 func dominant_direction(direction: Vector2) -> Vector2:
@@ -116,6 +118,17 @@ func dominant_direction(direction: Vector2) -> Vector2:
 
 
 func _perform_attack():
-	if position.distance_to(player.position) <= attack_range:
-		#print("Player hit!")
+	if global_position.distance_to(player.global_position) <= attack_range:
+		GameManager.playerHit()
 		pass
+
+func takeDamage():
+	health -= 1
+	# ToDo: DAMAGE ANIMATION
+	if(health <= 0):
+		self.queue_free()
+	pass
+
+func setHealth(value: int):
+	self.health = value
+	pass
