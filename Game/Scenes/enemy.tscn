@@ -271,6 +271,7 @@ animations = [{
 size = Vector2(10, 8)
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 4
 script = ExtResource("1_b3oue")
 
 [node name="EnemyAnimPlayer" type="AnimatedSprite2D" parent="."]
