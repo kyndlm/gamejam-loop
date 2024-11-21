@@ -61,6 +61,11 @@ func animationChanged(animationName: String, flipped: bool):
 	if(shouldRecordActions):
 		Replay.addAction(AnimationAction.new().initAnim(getRecordingGhost(), animationName, flipped))
 	pass
+	
+func absolutePositionChanged(position: Vector2):
+	if(shouldRecordActions):
+		Replay.addAction(TeleportAction.new().initTp(getRecordingGhost(), position))
+	pass
 
 func setPlayer(player: Node2D):
 	print("setplayer")

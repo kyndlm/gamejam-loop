@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var hitBoxScene = preload("res://Scenes/HitBox.tscn")
 
-var frameTime = 1/60
+var positionFrameTime = 1
 var passedTime = 0
 
 enum State {
@@ -64,16 +64,10 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.ATTACK:
 		velocity = direction * speed
 		move_and_slide()
-		if(passedTime>frameTime):
-			GhostManager.positionChanged(velocity)
+		GhostManager.positionChanged(velocity)
 		passedTime += delta
-		for i in range(get_slide_collision_count()):
-			var collision = get_slide_collision(i) 
-			var normal = collision.get_normal()  
-			if normal.dot(velocity) < 0:
-				velocity = velocity.slide(normal)
-
-		print(velocity, " - ", get_last_motion())
+		if(passedTime>positionFrameTime):
+			GhostManager.absolutePositionChanged(self.global_position)
 	Replay.processGhost()
 
 func _handle_idle_state() -> void:
