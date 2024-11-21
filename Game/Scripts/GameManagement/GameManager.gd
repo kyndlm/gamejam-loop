@@ -38,7 +38,7 @@ func startNewWave(player: Node2D):
 	
 	pass
 
-#only done if the last room is empty
+#only done if the last room is empty #not used rn
 func win_condition() -> int:
 	return current_room if enemiesLeft == 0 else -1
 	
@@ -56,7 +56,8 @@ func playerHit():
 	pass
 	
 func enemyKilled():
-	score += 1
+	player.add_exp(1)
+	setLevelBar(player.get_lvl())
 	pass
 func enemyKilledLevelMult():
 	score += level+1
@@ -96,4 +97,10 @@ func setLevelBar(value: int):
 
 func registerPlayer(player: Node2D):
 	self.player = player
+	setLevelBar(player.get_lvl())
+	pass
+	
+func resetHealth():
+	health = 100
+	ui.setHealthBarValue(health)
 	pass

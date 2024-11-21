@@ -7,20 +7,22 @@ var hitBoxDownScene = preload("res://Scenes/HitBoxDown.tscn")
 var hitBoxUpScene = preload("res://Scenes/HitBoxUp.tscn")
 var hitBoxRightScene = preload("res://Scenes/HitBoxRight.tscn")
 var hitBoxLeftScene = preload("res://Scenes/HitBoxLeft.tscn")
+var hitBoxUltScene = preload("res://Scenes/HitBoxUlt.tscn")
 
 var positionFrameTime = 1
 var passedTime = 0
-
 
 @export var max_health: int = 100
 @export var health: int = max_health
 @export var attack: int = 25
 @export var lvl: int = 1
 @export var exp: float = 0.0
-@export var exp_until_lvlup: float = 10.0
+@export var exp_until_lvlup: float = 20.0
 
 var attackCooldown: float = 0.4  # Dauer des Cooldowns
 var attackCooldownTimer: float = 0.0  # Timer zur Verfolgung
+var ultCooldown: float = 30.0  # Dauer des Ult-Cooldowns
+var ultCooldownTimer: float = 0.0  # Timer für die Ult
 
 var hitAnimation: bool = false
 
@@ -36,6 +38,7 @@ var current_state: State = State.IDLE
 var last_direction: String = "down"
 
 @export var attack_duration: float = 0.2
+@export var attack_ult_duration: float = 0.4
 var attack_timer: float = 0.0
 var is_attacking: bool = false
 
@@ -47,6 +50,8 @@ func _physics_process(delta: float) -> void:
 	# Cooldown-Timer aktualisieren
 	if attackCooldownTimer > 0:
 		attackCooldownTimer -= delta
+	if ultCooldownTimer > 0:
+		ultCooldownTimer -= delta
 
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("right"):
@@ -62,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		
 	direction = direction.normalized()
 
-	# Angriff nur starten, wenn Cooldown abgelaufen ist
+	# Angriff nur starten, wenn Cooldowns abgelaufen sind
 	if !hitAnimation:
 		if is_attacking:
 			attack_timer -= delta
@@ -75,6 +80,12 @@ func _physics_process(delta: float) -> void:
 			attack_timer = attack_duration
 			attackCooldownTimer = attackCooldown  # Cooldown setzen
 			spawnHitBox(last_direction)
+		elif Input.is_action_just_pressed("ult") and ultCooldownTimer <= 0:
+			current_state = State.ATTACK_ULT
+			is_attacking = true
+			attack_timer = attack_ult_duration
+			ultCooldownTimer = ultCooldown  # Ult-Cooldown setzen
+			spawnUltHitBox()
 		elif direction == Vector2.ZERO:
 			current_state = State.IDLE
 		else:
@@ -88,7 +99,7 @@ func _physics_process(delta: float) -> void:
 		State.ATTACK:
 			_handle_attack_state()
 		State.ATTACK_ULT:
-			_handle_attack_state()
+			_handle_attack_ult_state()
 		State.HIT:
 			_handle_hit_state()
 			hitAnimation = false
@@ -138,6 +149,11 @@ func _handle_attack_state() -> void:
 			
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
 	pass
+	
+func _handle_attack_ult_state() -> void:
+	anim_player.play("attack_ult")
+	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
+	pass
 
 func _handle_hit_state() -> void:
 	print("hit state handle blabla")
@@ -173,6 +189,15 @@ func spawnHitBox(state: String):
 	hitBox.queue_free()
 	pass
 	
+func spawnUltHitBox():
+	# Hitbox instanziieren
+	var hitBox
+	hitBox = hitBoxUltScene.instantiate()
+	add_child(hitBox)
+	await get_tree().create_timer(attack_ult_duration).timeout
+	hitBox.queue_free()
+	pass
+	
 func get_health() -> int:
 	return health
 	
@@ -185,7 +210,9 @@ func get_lvl() -> int:
 	return lvl
 func get_exp() -> float:
 	return exp
-	
+func add_exp(value: int):
+	exp += value
+	pass
 func get_exp_until_lvlup() -> float:
 	return exp_until_lvlup
 	
