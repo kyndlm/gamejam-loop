@@ -69,7 +69,7 @@ position = Vector2(130, 516)
 [node name="SpawnArea9" parent="World" instance=ExtResource("2_7oqr4")]
 position = Vector2(122, 383)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_0pc6a")
 volume_db = -7.0
 autoplay = true

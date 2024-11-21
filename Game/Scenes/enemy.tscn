@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://cd8k57bt503jv"]
+[gd_scene load_steps=47 format=3 uid="uid://cd8k57bt503jv"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_b3oue"]
 [ext_resource type="Texture2D" uid="uid://cx002bbjsa37a" path="res://Assets/Sprites/PlayerSprites/PlayerAttackSprite.png" id="1_n38gs"]
 [ext_resource type="Shader" path="res://Assets/Shaders/enemy.gdshader" id="2_201jm"]
 [ext_resource type="Texture2D" uid="uid://bcgowjhd1hnmb" path="res://Assets/Sprites/PlayerSprites/Prototype_Character.png" id="2_nfli6"]
 [ext_resource type="Texture2D" uid="uid://cehmo43wqinm5" path="res://Assets/Sprites/PlayerSprites/glow_sprite.png" id="5_p35ve"]
+[ext_resource type="AudioStream" uid="uid://dvpk1rf4g8iy4" path="res://Assets/Sounds/sword-sound.mp3" id="6_s8vmi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fcg67"]
 shader = ExtResource("2_201jm")
@@ -363,3 +364,6 @@ collision_mask = 5
 [node name="EnemyHurtBox" type="CollisionShape2D" parent="EnemyHurtArea"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ujtu3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_s8vmi")

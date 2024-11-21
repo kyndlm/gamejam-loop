@@ -5,6 +5,7 @@ var health = 2
 @export var attack_duration: float = 0.2
 
 @onready var anim_player = %EnemyAnimPlayer
+
 var player: Node2D
 
 enum State {
@@ -123,8 +124,8 @@ func _perform_attack():
 		pass
 
 func takeDamage():
+	
 	health -= 1
-	# ToDo: DAMAGE ANIMATION
 	if(health <= 0):
 		self.queue_free()
 	pass
@@ -132,3 +133,8 @@ func takeDamage():
 func setHealth(value: int):
 	self.health = value
 	pass
+
+func play_hit_sound():
+	if $AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stop()
+	$AudioStreamPlayer.play()

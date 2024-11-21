@@ -128,10 +128,14 @@ func _handle_attack_state() -> void:
 	match last_direction:
 		"down":
 			anim_player.play("attack_down")
+			play_hit_sound()
 		"up":
 			anim_player.play("attack_up")
+			play_hit_sound()
 		"side":
 			anim_player.play("attack_side")
+			play_hit_sound()
+			
 	GhostManager.animationChanged("attack_" + last_direction, anim_player.flip_h)
 	pass
 
@@ -187,6 +191,7 @@ func get_exp_until_lvlup() -> float:
 	
 func set_health(new_health: int):
 	health = new_health
+	
 func lvl_up_player():
 	lvl += 1
 	max_health += 15
@@ -196,5 +201,16 @@ func lvl_up_player():
 	
 func damageAnimation():
 	self.current_state = State.HIT
+	play_hurt_sound()
 	hitAnimation = true
 	pass
+	
+func play_hit_sound():
+	if $AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stop()
+	$AudioStreamPlayer.play()
+	
+func play_hurt_sound():
+	if $AudioStreamPlayer2.is_playing():
+		$AudioStreamPlayer2.stop()
+	$AudioStreamPlayer2.play()
