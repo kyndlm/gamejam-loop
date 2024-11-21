@@ -1,7 +1,13 @@
 extends CanvasLayer
 
+class_name Ui
+
 @onready var health_bar = $PlayerInfo
 @onready var health_label = $PlayerInfo/health
+
+func _ready():
+	GameManager.registerUi(self)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
