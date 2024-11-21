@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dacoaaxa44llx"]
+[gd_scene load_steps=3 format=3 uid="uid://biml43dunmavf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p3dp"]
+[ext_resource type="Script" path="res://Scenes/hitbox.gd" id="1_hhkal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vad6"]
 
 [node name="HitBox" type="Node2D"]
+script = ExtResource("1_hhkal")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_5p3dp")
-debug_color = Color(0.623529, 0.447059, 0.52549, 1)
+position = Vector2(0, 13)
+scale = Vector2(1.5, 0.45)
+shape = SubResource("RectangleShape2D_2vad6")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cd8k57bt503jv"]
+[gd_scene load_steps=40 format=3 uid="uid://cd8k57bt503jv"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_b3oue"]
 [ext_resource type="Texture2D" uid="uid://cx002bbjsa37a" path="res://Assets/Sprites/PlayerSprites/PlayerAttackSprite.png" id="1_n38gs"]
@@ -270,6 +270,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ud84k"]
 size = Vector2(10, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujtu3"]
+size = Vector2(14, 19)
+
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 4
 script = ExtResource("1_b3oue")
@@ -285,7 +288,7 @@ autoplay = "idle_down"
 frame = 2
 speed_scale = 0.5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ud84k")
 
@@ -294,3 +297,9 @@ color = Color(1, 0, 1, 1)
 energy = 2.3
 texture = ExtResource("5_p35ve")
 texture_scale = 1.6
+
+[node name="EnemyHurtArea" type="Area2D" parent="."]
+
+[node name="EnemyHurtBox" type="CollisionShape2D" parent="EnemyHurtArea"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ujtu3")
